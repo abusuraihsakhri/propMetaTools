@@ -1,0 +1,17 @@
+Package: propMetaTools
+Type: Package
+Title: Tools for Proportional Meta Analysis
+Version: 0.1.0
+Author: Abu Suraih Sakhri
+Maintainer: Abu Suraih Sakhri<abusuraihsakhri@gmail.com>
+Description: propMetaTools is an R package designed to simplify
+    proportional meta analysis workflows used in epidemiology
+    and clinical research. The package provides tools for
+    preparing datasets, performing meta analysis using
+    Freeman-Tukey transformation, and evaluating publication
+    bias through funnel plot diagnostics and regression tests.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports: meta
+VIDEO: https://youtube.com/
