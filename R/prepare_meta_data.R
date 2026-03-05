@@ -4,12 +4,12 @@ prepare_meta_data <- function(data,
                               study_col = "study",
                               year_col = "year") {
 
-  # Check if input is a dataframe
+  # Ensure input is dataframe
   if (!is.data.frame(data)) {
     stop("Input must be a dataframe")
   }
 
-  # Check required columns
+  # Required columns
   required_cols <- c(event_col, total_col, study_col, year_col)
 
   if (!all(required_cols %in% colnames(data))) {
@@ -19,11 +19,20 @@ prepare_meta_data <- function(data,
   # Remove rows with missing values
   data <- data[complete.cases(data[, required_cols]), ]
 
-  # Ensure numeric columns
+  # Convert numeric columns
   data[[event_col]] <- as.numeric(data[[event_col]])
   data[[total_col]] <- as.numeric(data[[total_col]])
 
-  # Calculate proportion
+  # Validate counts
+  if (any(data[[event_col]] > data[[total_col]])) {
+    stop("Events cannot be greater than total sample size")
+  }
+
+  if (any(data[[event_col]] < 0)) {
+    stop("Events cannot be negative")
+  }
+
+  # Calculate proportions
   data$proportion <- data[[event_col]] / data[[total_col]]
 
   # Sort by year
